@@ -9,7 +9,9 @@ public:
 	FolkClub();
 	FolkClub(const char*, const double&, const double&, const char*);
 	FolkClub(const FolkClub&);
+	FolkClub(FolkClub&&) noexcept;
 	FolkClub& operator=(const FolkClub&);
+	FolkClub& operator=(FolkClub&&) noexcept;
 	~FolkClub();
 	Club* clone();
 

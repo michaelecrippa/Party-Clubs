@@ -40,6 +40,7 @@ private:
 
 	void erase();
 	void copyFrom(const Club&);
+	void move_(Club&&);
 
 	void resize();
 	int findFirstFreeIndex() const;

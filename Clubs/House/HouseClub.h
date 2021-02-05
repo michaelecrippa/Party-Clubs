@@ -9,6 +9,9 @@ class HouseClub : public Club {
 public:
 	HouseClub();
 	HouseClub(const char*, const double&, const double&, const int&);
+	HouseClub(HouseClub&&) noexcept;
+	HouseClub(const HouseClub&) = default;
+	HouseClub& operator=(HouseClub&&) noexcept;
 	~HouseClub();
 	bool addUser(const User&);
 	Club* clone();

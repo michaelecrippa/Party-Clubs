@@ -6,6 +6,9 @@
 HouseClub::HouseClub() : Club(HOUSE_MIN_WHISKY_PRICE, HOUSE_MIN_VODKA_PRICE) {
 	numOfDjs = -1;
 }
+HouseClub::HouseClub(HouseClub&& other) noexcept : Club(std::move(other)){
+	this->numOfDjs = other.numOfDjs;
+}
 HouseClub::HouseClub(const char* name, const double& whisky, const double& vodka, const int& djs) : Club(HOUSE_MIN_WHISKY_PRICE, HOUSE_MIN_VODKA_PRICE) {
 	if (!setNewPrices(name, whisky, vodka))
 		this->~HouseClub();
@@ -15,9 +18,15 @@ HouseClub::HouseClub(const char* name, const double& whisky, const double& vodka
 	}	
 	numOfDjs = djs;
 }
-HouseClub::~HouseClub() {
-	numOfDjs = 0;
+HouseClub& HouseClub::operator=(HouseClub&& other) noexcept {
+	if (this != &other) {
+		this->~HouseClub();
+		numOfDjs = other.numOfDjs;
+		Club::operator=(std::move(other));
+	}
+	return *this;
 }
+HouseClub::~HouseClub() {}
 bool HouseClub::addUser(const User& user) {
 	if (user.getPreferedMusic() == 0) {
 		Messages::wrong_club_warning(user.getName(), 'h');

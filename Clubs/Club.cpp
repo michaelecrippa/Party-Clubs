@@ -3,17 +3,12 @@
 #include "../Resources/Messages.h"
 
 void Club::erase() {
-	if (isEmpty())
-		return;
+	if (isEmpty()) return;
 	delete[] users;
 	users = nullptr;
 
 	delete[] name;
 	name = nullptr;
-
-	current = 0;
-	userCapacity = 8;
-	minWhiskyPrice = minVodkaPrice = 0;
 }
 void Club::copyFrom(const Club& other) {
 	if (other.isEmpty()) {
@@ -31,6 +26,19 @@ void Club::copyFrom(const Club& other) {
 	users = new User[userCapacity];
 	for (int i = 0; i < current; i++)
 		users[i] = other.users[i];
+}
+void Club::move_(Club&& other) {
+	name = other.name;
+	other.name = nullptr;
+
+	users = other.users;
+	other.users = nullptr;
+
+	userCapacity = other.userCapacity;
+	current = other.current;
+
+	minVodkaPrice = other.minVodkaPrice;
+	minWhiskyPrice = other.minWhiskyPrice;
 }
 void Club::resize() {
 	userCapacity *= 2;
@@ -77,8 +85,7 @@ Club::Club(const Club& other) {
 	copyFrom(other);
 }
 Club::Club(Club&& other) noexcept{
-	copyFrom(other);
-	other.erase();
+	move_(std::move(other));
 }
 Club& Club::operator=(const Club& other) {
 	if (this != &other) {
@@ -90,8 +97,7 @@ Club& Club::operator=(const Club& other) {
 Club& Club::operator=(Club&& other) noexcept{
 	if (this != &other) {
 		erase();
-		copyFrom(other);
-		other.erase();
+		move_(std::move(other));
 	}
 	return *this;
 }
@@ -112,8 +118,7 @@ bool Club::setNewPrices(const char* name, const double whiskyPrice, const double
 	return true;
 }
 void Club::setName(const char* name) {
-	if (!isEmpty())
-	{
+	if (!isEmpty()) {
 		delete[] this->name;
 	}
 	int len = strlen(name);

@@ -1,26 +1,41 @@
+#include <algorithm>
+
 #include "../Club.h"
 #include "FolkClub.h"
 #include "../../User/User.h"
 #include "../../Resources/Constants.h"
 #include "../../Resources/Messages.h"
 
+
 FolkClub::FolkClub() : Club(FOLK_MAX_USERS, FOLK_MIN_WHISKY_PRICE, FOLK_MIN_VODKA_PRICE) {
 	performer = nullptr;
 }
-FolkClub::FolkClub(const char* name,const double& whisky,const double& vodka, const char* performer) : Club(FOLK_MAX_USERS, FOLK_MIN_WHISKY_PRICE, FOLK_MIN_VODKA_PRICE) {
+FolkClub::FolkClub(const char* name,const double& whisky,const double& vodka, const char* performer) : Club(FOLK_MAX_USERS, FOLK_MIN_WHISKY_PRICE, FOLK_MIN_VODKA_PRICE), performer(nullptr) {
 	setPerformer(performer);
 	if (!setNewPrices(name, whisky, vodka))
 		this->~FolkClub();
 }
-FolkClub::FolkClub(const FolkClub& other) {
+FolkClub::FolkClub(const FolkClub& other) : Club(other){
 	copyFrom(other);	
 }
-
+FolkClub::FolkClub(FolkClub&& other) noexcept : Club(std::move(other)){
+	performer = other.performer;
+	other.performer = nullptr;
+}
 FolkClub& FolkClub::operator=(const FolkClub& other) {
-	if (this != &other)
-	{
+	if (this != &other) {
 		erase();
 		copyFrom(other);
+		Club::operator=(other);
+	}
+	return *this;
+}
+FolkClub& FolkClub::operator=(FolkClub&& other) noexcept {
+	if (this != &other) {
+		this->~FolkClub();
+		performer = other.performer;
+		other.performer = nullptr;
+		Club::operator=(std::move(other));
 	}
 	return *this;
 }

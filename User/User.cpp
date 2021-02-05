@@ -6,11 +6,9 @@
 
 
 void User::erase() {
-	if (!isEmpty()) {
-		delete[] name;
-		name = nullptr;
-	}	
-	years = money = whiskies = vodkas = -1;
+	if (isEmpty()) return;
+	delete[] name;
+	name = nullptr;
 }
 void User::copyFrom(const User& other) {
 	if (!other.isEmpty()) {
@@ -28,7 +26,15 @@ void User::copyFrom(const User& other) {
 		music = other.music;
 	}
 }
-
+void User::move_(User&& other) {
+	this->name = other.name;
+	this->years = other.years;
+	this->money = other.money;
+	this->whiskies = other.whiskies;
+	this->vodkas = other.vodkas;
+	this->music = other.music;
+	other.name = nullptr;
+}
 User::User() {
 	name = nullptr;
 	years = money = whiskies = vodkas = -1;
@@ -37,13 +43,8 @@ User::User() {
 User::User(const User& other) {
 	copyFrom(other);
 }
-User::User(User&& other) noexcept {
-	name = nullptr;
-	years = money = whiskies = vodkas = -1;
-	music = everything;
-
-	copyFrom(other);
-	other.erase();
+User::User(User&& other) noexcept { 
+	move_(std::move(other));
 }
 User& User::operator=(const User& other) {
 	if (this != &other) {
@@ -55,8 +56,7 @@ User& User::operator=(const User& other) {
 User& User::operator=(User&& other) noexcept {
 	if (this != &other) {
 		erase();
-		copyFrom(other);
-		other.erase();
+		move_(std::move(other));
 	}
 	return *this;
 }
@@ -64,7 +64,7 @@ User::~User() {
 	erase();
 }
 
-User::User(const char* name, const short& years, const double& money, const int& whiskies, const int& vodkas, const char* music) {
+User::User(const char* name, const short& years, const double& money, const int& whiskies, const int& vodkas, const char* music) : User() {
 	setName(name);
 	setYears(years);
 	setMoney(money);
@@ -120,10 +120,8 @@ void User::setPreferedMusic(const char* music) {
 		this->music = rock;
 	else if (!strcmp("house", music))
 		this->music = house;
-	else if (!strcmp("everything", music))
-		this->music = everything;
 	else
-		std::cout << "Invalide type of music!" << std::endl;
+		this->music = everything;	
 }
 
 bool User::isEmpty() const {

@@ -1,6 +1,8 @@
 #ifndef _USER_H_
 #define _USER_H_
 
+#include "../Resources/Messages.h"
+
 enum Music { folk = 0, rock, house, everything };
 
 class User {
@@ -42,6 +44,7 @@ private:
 
 	void erase();
 	void copyFrom(const User&);
+	void move_(User&&);
 };
 
 #endif // !_USER_H_

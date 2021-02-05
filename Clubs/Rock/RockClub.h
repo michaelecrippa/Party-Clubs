@@ -8,6 +8,10 @@ class RockClub : public Club {
 public:
 	RockClub();
 	RockClub(const char*, const double&, const double&);
+	RockClub(RockClub&&) = default;
+	RockClub(const RockClub&) = default;
+	RockClub& operator=(RockClub&&) = default;
+
 	Club* clone();
 	bool addUser(const User&);
 	bool isFull() const;

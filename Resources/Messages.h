@@ -3,11 +3,10 @@
 
 #include <iostream>
 
-#include "../User/User.h"
-
 class Messages {
 public:
 protected:
+
 	void cheap_vodka() const {
 		std::cout << "Vodka too cheap!" << std::endl;
 	}
