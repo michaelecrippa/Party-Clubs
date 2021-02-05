@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "Club.h"
 #include "../User/User.h"
 #include "../Resources/Messages.h"
@@ -28,7 +30,7 @@ void Club::copyFrom(const Club& other) {
 		users[i] = other.users[i];
 }
 void Club::move_(Club&& other) {
-	name = other.name;
+	name = std::move(other.name);
 	other.name = nullptr;
 
 	users = other.users;

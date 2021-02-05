@@ -27,12 +27,12 @@ void User::copyFrom(const User& other) {
 	}
 }
 void User::move_(User&& other) {
-	this->name = other.name;
-	this->years = other.years;
-	this->money = other.money;
-	this->whiskies = other.whiskies;
-	this->vodkas = other.vodkas;
-	this->music = other.music;
+	this->name = std::move(other.name);
+	this->years = std::move(other.years);
+	this->money = std::move(other.money);
+	this->whiskies = std::move(other.whiskies);
+	this->vodkas = std::move(other.vodkas);
+	this->music = std::move(other.music);
 	other.name = nullptr;
 }
 User::User() {

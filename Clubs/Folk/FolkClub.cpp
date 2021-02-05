@@ -19,7 +19,7 @@ FolkClub::FolkClub(const FolkClub& other) : Club(other){
 	copyFrom(other);	
 }
 FolkClub::FolkClub(FolkClub&& other) noexcept : Club(std::move(other)){
-	performer = other.performer;
+	performer = std::move(other.performer);
 	other.performer = nullptr;
 }
 FolkClub& FolkClub::operator=(const FolkClub& other) {

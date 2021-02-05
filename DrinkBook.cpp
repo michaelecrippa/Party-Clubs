@@ -1,8 +1,6 @@
 #include "../DrinkBook/Clubs/ClubCollection.h"
 
-int main()
-{
-	/*
+int main() {	
 	Clubs d;
 	d.addRockClub("Stereo", 35, 50);
 	User user("Miro", 27, 100, 1, 1, "everything");
@@ -23,7 +21,6 @@ int main()
 	d.addRockClub("5", 35, 50);
 	d.addRockClub("6", 35, 50);
 	d.addRockClub("7", 35, 50);
-	*/
-	RockClub a(std::move(RockClub("R", 100, 100)));
+	
 }
 
