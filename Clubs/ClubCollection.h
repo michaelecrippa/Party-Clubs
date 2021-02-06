@@ -1,6 +1,8 @@
 #ifndef _CLUBCOLLECTION_H_
 #define _CLUBCOLLECTION_H_
 
+#include <algorithm>
+
 #include "../Clubs/Club.h"
 #include "../Clubs/Folk/FolkClub.h"
 #include "../Clubs/Rock/RockClub.h"
@@ -31,7 +33,15 @@ public:
 	void add(Club*);
 
 	bool removeFromClub(const char* userName, const char* clubName);
-	bool addToClub(const User&, const char* clubName);
+	template <typename T> bool addToClub(T&&, const char* clubName);
 };
 
+template <typename T> bool Clubs::addToClub(T&& user, const char* clubName) {
+	for (int i = 0; i < current; i++) {
+		if (!strcmp(collection[i]->getName(), clubName))
+			return collection[i]->addUser(std::forward<T>(user));
+	}
+	Messages::club_warning();
+	return false;
+}
 #endif // !_CLUBCOLLECTION_H_

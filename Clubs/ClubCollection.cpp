@@ -22,7 +22,7 @@ void Clubs::resize() {
 	elements *= 2;
 	Club** cpy = new Club* [elements];
 	for (size_t i = 0; i < current; i++) {
-		cpy[i] = collection[i];
+		cpy[i] = std::move(collection[i]);
 	}
 	for (size_t i = current; i < elements; i++){
 		cpy[i] = nullptr;
@@ -61,7 +61,7 @@ void Clubs::add(Club* current_club) {
 	int index = firstFreeIndex();
 	if (index >= this->current && this->current >= elements / 2)
 		resize();
-	collection[index] = current_club;
+	collection[index] = std::move(current_club);
 	if (index >= this->current)
 		++this->current;
 }
@@ -88,11 +88,12 @@ bool Clubs::removeFromClub(const char* userName,const char* clubName) {
 	Messages::club_warning();
 	return false;
 }
-bool Clubs::addToClub(const User& user,const char* clubName) {
-	for (int i = 0; i < current; i++) {
-		if (!strcmp(collection[i]->getName(), clubName))
-			return collection[i]->addUser(user);
-	}
-	Messages::club_warning();
-	return false;
-}
+//without forwarding (only cpy constructor invoked)
+//bool Clubs::addToClub(User& user,const char* clubName) {
+//	for (int i = 0; i < current; i++) {
+//		if (!strcmp(collection[i]->getName(), clubName))
+//			return collection[i]->addUser(std::forward(user));
+//	}
+//	Messages::club_warning();
+//	return false;
+//}

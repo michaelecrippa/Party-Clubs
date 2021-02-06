@@ -23,6 +23,7 @@ public:
 	bool isEmpty() const;
 
 	bool addUser(const User&);
+	bool addUser(User&&);
 	bool removeFromClub(const char* name);
 	virtual Club* clone() = 0;
 protected:

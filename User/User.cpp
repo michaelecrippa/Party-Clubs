@@ -11,20 +11,18 @@ void User::erase() {
 	name = nullptr;
 }
 void User::copyFrom(const User& other) {
-	if (!other.isEmpty()) {
-		int len = strlen(other.name);
-		name = new char[len+1];
-		strcpy(name, other.name);
-		name[len] = '\0';
-	}
-	else  {
-		name = nullptr;
-		years = other.years;
-		money = other.money;
-		whiskies = other.whiskies;
-		vodkas = other.vodkas;
-		music = other.music;
-	}
+	if (other.isEmpty()) return;
+
+	int len = strlen(other.name);
+	name = new char[len + 1];
+	strcpy(name, other.name);
+	name[len] = '\0';
+
+	years = other.years;
+	money = other.money;
+	whiskies = other.whiskies;
+	vodkas = other.vodkas;
+	music = other.music;
 }
 void User::move_(User&& other) {
 	this->name = std::move(other.name);

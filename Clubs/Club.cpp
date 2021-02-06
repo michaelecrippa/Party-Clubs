@@ -164,8 +164,15 @@ bool Club::addUser(const User& user) {
 	int index = findFirstFreeIndex();
 	if (index < 0) return false;
 	users[index] = user;
-	if (index < current - 1) return true;
-	++current; return true;
+	if (index >= current - 1)  ++current;
+	return true;
+}
+bool Club::addUser(User&& user) {
+	int index = findFirstFreeIndex();
+	if (index < 0) return false;
+	users[index] = std::move(user);
+	if (index >= current - 1)  ++current;
+	return true;
 }
 bool Club::removeFromClub(const char* name) {
 	for (int i = 0; i < current; i++)
@@ -173,7 +180,7 @@ bool Club::removeFromClub(const char* name) {
 		if (users[i].isEmpty())
 			continue;
 		if (users[i].checkForMatch(name)) {
-			users[i] = User();	
+			users[i].~User();
 			return true;
 		}				
 	}
