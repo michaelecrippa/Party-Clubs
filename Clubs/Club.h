@@ -9,10 +9,6 @@ public:
 	Club();
 	Club(const int&, const double&, const double&);
 	Club(const double&, const double&);
-	Club(const Club& other);
-	Club(Club&& other) noexcept;
-	Club& operator=(const Club& other);
-	Club& operator=(Club&& other) noexcept;
 	virtual ~Club() = 0;
 
 	double getVodkaPrice() const;
@@ -27,6 +23,11 @@ public:
 	bool removeFromClub(const char* name);
 	virtual Club* clone() = 0;
 protected:
+	Club(const Club& other);
+	Club(Club&& other) noexcept;
+	Club& operator=(const Club& other);
+	Club& operator=(Club&& other) noexcept;
+
 	bool setNewPrices(const char*, double, double);
 private:
 	char* name;

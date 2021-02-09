@@ -23,13 +23,15 @@ bool RockClub::addUser(const User& user) {
 		Messages::wrong_club_warning(user.getName(), 'r');
 		return false;
 	}
-	else if (user.getYears() < LEGAL_AGE) {
+	if (user.getYears() < LEGAL_AGE) {
 		Messages::user_age_warning(user.getName());
 		return false;
 	}
-	else if (user.getMoney() < user.getNumberOfVodkas() * getVodkaPrice() + user.getNumberOfWhiskies() * getWhiskyPrice()) {
+	if (user.getMoney() < user.getNumberOfVodkas() * getVodkaPrice() + user.getNumberOfWhiskies() * getWhiskyPrice()) {
 		Messages::user_money_warning(user.getName());
 		return false;
 	}
+
 	Club::addUser(user);
+	return true;
 }

@@ -51,8 +51,7 @@ Clubs& Clubs::operator=(const Clubs& other) {
 		erase();
 		copyFrom(other);
 	}
-	else
-		return *this;
+	return *this;
 }
 Clubs::~Clubs() {
 	erase();
