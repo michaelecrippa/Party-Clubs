@@ -26,7 +26,6 @@ HouseClub& HouseClub::operator=(HouseClub&& other) noexcept {
 	}
 	return *this;
 }
-HouseClub::~HouseClub() {}
 bool HouseClub::addUser(const User& user) {
 	if (user.getPreferedMusic() == 0) {
 		Messages::wrong_club_warning(user.getName(), 'h');

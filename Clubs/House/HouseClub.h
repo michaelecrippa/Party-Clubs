@@ -12,9 +12,11 @@ public:
 	HouseClub(HouseClub&&) noexcept;
 	HouseClub(const HouseClub&) = default;
 	HouseClub& operator=(HouseClub&&) noexcept;
-	~HouseClub();
+	~HouseClub() = default;
+
+	Club* clone() override;
+
 	bool addUser(const User&);
-	Club* clone();
 };
 
 #endif // _HOUSECLUB_H_

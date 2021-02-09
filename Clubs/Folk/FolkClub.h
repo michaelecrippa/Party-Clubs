@@ -12,8 +12,8 @@ public:
 	FolkClub(FolkClub&&) noexcept;
 	FolkClub& operator=(const FolkClub&);
 	FolkClub& operator=(FolkClub&&) noexcept;
-	~FolkClub();
-	Club* clone();
+	~FolkClub() override;
+	Club* clone() override;
 
 	void setPerformer(const char*);
 	char* getPerformer() const;

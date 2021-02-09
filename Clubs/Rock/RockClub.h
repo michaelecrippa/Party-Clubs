@@ -11,8 +11,10 @@ public:
 	RockClub(RockClub&&) = default;
 	RockClub(const RockClub&) = default;
 	RockClub& operator=(RockClub&&) = default;
+	~RockClub() = default;
 
-	Club* clone();
+	Club* clone() override;
+
 	bool addUser(const User&);
 	bool isFull() const;
 };
