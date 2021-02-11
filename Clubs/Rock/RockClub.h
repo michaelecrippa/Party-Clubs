@@ -2,7 +2,7 @@
 #define _ROCKCLUB_H_
 
 #include "../../User/User.h"
-#include "../Club.h"
+#include "../Base Club/Club.h"
 
 class RockClub : public Club {
 public:

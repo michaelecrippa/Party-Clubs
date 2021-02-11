@@ -1,6 +1,6 @@
 #include <typeindex>
 
-#include "../Club.h"
+#include "../Base Club/Club.h"
 #include "RockClub.h"
 #include "../../User/User.h"
 #include "../../Resources/Constants.h"

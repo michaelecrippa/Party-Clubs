@@ -1,4 +1,4 @@
-#include "../Club.h"
+#include "../Base Club/Club.h"
 #include "HouseClub.h"
 #include "../../Resources/Constants.h"
 #include "../../Resources/Messages.h"
@@ -26,7 +26,7 @@ HouseClub& HouseClub::operator=(HouseClub&& other) noexcept {
 	}
 	return *this;
 }
-bool HouseClub::addUser(const User& user) {
+bool HouseClub::addUser(const User& user){
 	if (user.getPreferedMusic() == 0) {
 		Messages::wrong_club_warning(user.getName(), 'h');
 		return false;

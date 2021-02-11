@@ -1,6 +1,6 @@
 #include <algorithm>
 
-#include "../Club.h"
+#include "../Base Club/Club.h"
 #include "FolkClub.h"
 #include "../../User/User.h"
 #include "../../Resources/Constants.h"

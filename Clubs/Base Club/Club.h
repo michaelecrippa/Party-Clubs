@@ -1,8 +1,8 @@
 #ifndef _CLUB_H_
 #define _CLUB_H_
 
-#include "../User/User.h"
-#include "../Resources/Messages.h"
+#include "../../User/User.h"
+#include "../../Resources/Messages.h"
 
 class Club : protected Messages {
 public:

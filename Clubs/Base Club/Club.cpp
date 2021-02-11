@@ -1,8 +1,8 @@
 #include <algorithm>
 
 #include "Club.h"
-#include "../User/User.h"
-#include "../Resources/Messages.h"
+#include "../../User/User.h"
+#include "../../Resources/Messages.h"
 
 void Club::erase() {
 	if (isEmpty()) return;

@@ -2,7 +2,7 @@
 #define _HOUSECLUB_H_
 
 #include "../../User/User.h"
-#include "../Club.h"
+#include "../Base Club/Club.h"
 
 class HouseClub : public Club {
 	int numOfDjs;

@@ -1,5 +1,5 @@
 #include "ClubCollection.h"
-#include "../Resources/Messages.h"
+#include "../../Resources/Messages.h"
 
 void Clubs::erase() {
 	for (int i = 0; i < current; i++) {

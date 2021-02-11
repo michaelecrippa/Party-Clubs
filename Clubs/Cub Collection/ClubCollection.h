@@ -3,12 +3,12 @@
 
 #include <algorithm>
 
-#include "../Clubs/Club.h"
-#include "../Clubs/Folk/FolkClub.h"
-#include "../Clubs/Rock/RockClub.h"
-#include "../Clubs/House/HouseCLub.h"
-#include "../User/User.h"
-#include "../Resources/Messages.h"
+#include "../Base Club/Club.h"
+#include "../../Clubs/Folk/FolkClub.h"
+#include "../../Clubs/Rock/RockClub.h"
+#include "../../Clubs/House/HouseCLub.h"
+#include "../../User/User.h"
+#include "../../Resources/Messages.h"
 
 class Clubs : protected Messages{
 private:
