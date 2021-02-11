@@ -16,7 +16,7 @@ Club* RockClub::clone() {
 	return newRockClub;
 }
 bool RockClub::isFull() const{
-	return getCurrentUsers() == 30;
+	return getCurrentUsers() == ROCK_MAX_USERS;
 }
 bool RockClub::addUser(const User& user) {
 	if (user.getPreferedMusic() == 2) {

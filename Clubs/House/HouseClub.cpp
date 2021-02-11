@@ -3,13 +3,14 @@
 #include "../../Resources/Constants.h"
 #include "../../Resources/Messages.h"
 
-HouseClub::HouseClub() : Club(HOUSE_MIN_WHISKY_PRICE, HOUSE_MIN_VODKA_PRICE) {
+//House club has no limitation to number of people in it
+HouseClub::HouseClub() : Club(INT32_MAX, HOUSE_MIN_WHISKY_PRICE, HOUSE_MIN_VODKA_PRICE) {
 	numOfDjs = -1;
 }
 HouseClub::HouseClub(HouseClub&& other) noexcept : Club(std::move(other)){
 	this->numOfDjs = other.numOfDjs;
 }
-HouseClub::HouseClub(const char* name, const double& whisky, const double& vodka, const int& djs) : Club(HOUSE_MIN_WHISKY_PRICE, HOUSE_MIN_VODKA_PRICE) {
+HouseClub::HouseClub(const char* name, const double& whisky, const double& vodka, const int& djs) : Club(INT32_MAX, HOUSE_MIN_WHISKY_PRICE, HOUSE_MIN_VODKA_PRICE) {
 	if (!setNewPrices(name, whisky, vodka))
 		this->~HouseClub();
 	if (djs < 0) {

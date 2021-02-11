@@ -125,8 +125,8 @@ void User::setPreferedMusic(const char* music) {
 bool User::isEmpty() const {
 	return name == nullptr;
 }
-bool User::checkForMatch(const char* name) const {
-	return !strcmp(name, this->name);
+bool User::checkUserName(const char* name) const {
+	return !strcmp(this->name, name);
 }
 void User::payToTheGuard() {
 	if (this->money >= GUARD_FEE) this->money -= GUARD_FEE;

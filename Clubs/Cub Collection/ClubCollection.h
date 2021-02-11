@@ -10,6 +10,7 @@
 #include "../../User/User.h"
 #include "../../Resources/Messages.h"
 
+//Collection of clubs used to store club pointers to different types of clubs
 class Clubs : protected Messages{
 private:
 	int elements;

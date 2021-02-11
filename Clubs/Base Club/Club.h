@@ -7,12 +7,14 @@
 class Club : protected Messages {
 public:
 	Club();
-	Club(const int&, const double&, const double&);
-	Club(const double&, const double&);
+	Club(const int& capacity, const double& whisky_price, const double& vodka_price);
+	//used only for HouseClub
+	//Club(const double& whisky_price, const double& vodka_price);
 	virtual ~Club() = 0;
 
 	double getVodkaPrice() const;
 	double getWhiskyPrice() const;
+	//users currently in the club
 	int getCurrentUsers() const;
 	char* getName() const;
 
@@ -20,7 +22,7 @@ public:
 
 	bool addUser(const User&);
 	bool addUser(User&&);
-	bool removeFromClub(const char* name);
+	bool removeFromClub(const char* user_name);
 	virtual Club* clone() = 0;
 protected:
 	Club(const Club& other);
@@ -45,10 +47,13 @@ private:
 	void move_(Club&&);
 
 	void resize();
+	//returns first free index where we can add new user
 	int findFirstFreeIndex() const;
+
 	bool setWhiskyPrice(const double);
 	bool setVodkaPrice(const double);
 	void setName(const char*);
+
 	int getUserCapacity() const;
 };
 

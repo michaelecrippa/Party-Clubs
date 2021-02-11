@@ -69,14 +69,15 @@ Club::Club(const int& capacity, const double& minWhiskyPrice, const double& minV
 	current = 1;
 	users = new User[userCapacity];
 }
-Club::Club(const double& minWhiskyPrice, const double& minVodkaPrice) {
-	name = nullptr;
-	this->minWhiskyPrice = minWhiskyPrice;
-	this->minVodkaPrice = minVodkaPrice;
-	userCapacity = 8;
-	current = 0;
-	users = new User[userCapacity];
-}
+//used only for HouseClub
+//Club::Club(const double& minWhiskyPrice, const double& minVodkaPrice) {
+//	name = nullptr;
+//	this->minWhiskyPrice = minWhiskyPrice;
+//	this->minVodkaPrice = minVodkaPrice;
+//	userCapacity = 8;
+//	current = 0;
+//	users = new User[userCapacity];
+//}
 Club::Club() {
 	current = userCapacity = 0;
 	minVodkaPrice = minWhiskyPrice = 0;
@@ -179,7 +180,7 @@ bool Club::removeFromClub(const char* name) {
 	{
 		if (users[i].isEmpty())
 			continue;
-		if (users[i].checkForMatch(name)) {
+		if (users[i].checkUserName(name)) {
 			users[i].~User();
 			return true;
 		}				

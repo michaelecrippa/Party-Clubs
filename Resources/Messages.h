@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+// Inerface class used to capture command line messages and separate prnting from classes and avoid spaghetti code
+
 class Messages {
 public:
 protected:
