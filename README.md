@@ -23,7 +23,7 @@ Examples for inheritance, polymorphism, hierarchical structure and encapsulation
 | Club | size / whisky price / vodka price | Messages |
 | FolkClub | performer / size / whisky price / vodka price   |  Club | 
 | HouseClub | whisky price/ vodka price / # of djs |  Club | 
-| RockClub | size / whisky pricey / vodka price |  Club | 
+| RockClub | size / whisky price / vodka price |  Club | 
 | Messages | prints messages to the console | no |
 | Clubs | collection of different clubs | Messages |
 
